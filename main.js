@@ -38,15 +38,32 @@ function main () {
     mosaicProcess.stdout.on('data', data => {
       console.log(`stdout: ${data}`)
     })
-
     mosaicProcess.stderr.on('data', data => {
       console.log(`stderr: ${data}`)
     })
-
     mosaicProcess.on('error', (error) => {
       console.log(`error: ${error.message}`)
     })
+    mosaicProcess.on('close', code => {
+      console.log(`average calculation exited with code ${code}`)
+    })
+  })
 
+  ipcMain.on('build-mosaic', (event, buildSettings) => {
+    console.log(buildSettings)
+    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.0.jar', 'build',
+      '-p', buildSettings.imgPath, '-o', buildSettings.imgOutPath,
+      '-a', buildSettings.avgsOutPath, '-t', buildSettings.threadCount])
+
+    mosaicProcess.stdout.on('data', data => {
+      console.log(`stdout: ${data}`)
+    })
+    mosaicProcess.stderr.on('data', data => {
+      console.log(`stderr: ${data}`)
+    })
+    mosaicProcess.on('error', (error) => {
+      console.log(`error: ${error.message}`)
+    })
     mosaicProcess.on('close', code => {
       console.log(`average calculation exited with code ${code}`)
     })
