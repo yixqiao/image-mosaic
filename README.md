@@ -1,5 +1,5 @@
-# Clock View
-Application to display a digital clock with the current time.
+# Image Mosaic
+Application to generate an image mosaic using [MosaicCLI](https://github.com/yixqiao/MosaicCLI)
 
 ## Requirements
 * Node.js v10
