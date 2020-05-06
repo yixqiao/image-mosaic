@@ -23,15 +23,6 @@ function main () {
   // mainWindow.setMenu(null)
   mainWindow.webContents.openDevTools()
 
-  mainWindow.setAlwaysOnTop(!mainWindow.isFullScreen())
-  mainWindow.setVisibleOnAllWorkspaces(!mainWindow.isFullScreen())
-
-  electronLocalshortcut.register(mainWindow, 'F11', () => {
-    mainWindow.setFullScreen(!mainWindow.isFullScreen())
-    mainWindow.setAlwaysOnTop(!mainWindow.isFullScreen())
-    mainWindow.setVisibleOnAllWorkspaces(!mainWindow.isFullScreen())
-  })
-
   electronLocalshortcut.register(mainWindow, 'Escape', () => {
     app.quit()
   })
@@ -40,9 +31,9 @@ function main () {
     // Do nothing
   })
 
-  ipcMain.on('begin-process', () => {
-    // const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.0.jar', 'averages', '-i', 'cifar10-test'])
-    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.0.jar', 'build', '-p', 'lake.jpg', '-a', 'avgs.txt'])
+  ipcMain.on('calc-avgs', (event, avgsSettings) => {
+    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.0.jar', 'averages',
+      '-i', avgsSettings.imgsPath, '-o', avgsSettings.avgsOutPath, '-t', avgsSettings.threadCount])
 
     mosaicProcess.stdout.on('data', data => {
       console.log(`stdout: ${data}`)
@@ -57,7 +48,7 @@ function main () {
     })
 
     mosaicProcess.on('close', code => {
-      console.log(`child process exited with code ${code}`)
+      console.log(`average calculation exited with code ${code}`)
     })
   })
 }
