@@ -32,7 +32,7 @@ function main () {
   })
 
   ipcMain.on('calc-avgs', (event, avgsSettings) => {
-    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.0.jar', 'averages',
+    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.1.jar', 'averages',
       '-i', avgsSettings.imgsPath, '-o', avgsSettings.avgsOutPath, '-t', avgsSettings.threadCount])
 
     mosaicProcess.stdout.on('data', data => {
@@ -51,7 +51,7 @@ function main () {
 
   ipcMain.on('build-mosaic', (event, buildSettings) => {
     console.log(buildSettings)
-    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.0.jar', 'build',
+    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.1.jar', 'build',
       '-p', buildSettings.imgPath, '-o', buildSettings.imgOutPath,
       '-a', buildSettings.avgsOutPath, '-t', buildSettings.threadCount])
 
