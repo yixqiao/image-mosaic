@@ -14,7 +14,7 @@
 <body>
   <div id="avgsContainer">
     <button id="pickImgs">Pick images</button>
-    <div id="imgsPath" data-has-selected>No path selected</div>
+    <div id="imgsPath" data-has-selected>No directory selected</div>
 
     <button id="pickAvgsOut">Pick averages file</button>
     <div id="avgsOutPath" data-has-selected>No file selected</div>
@@ -41,7 +41,12 @@
     <button id="buildMosaicButton">Build mosaic</button>
   </div>
 
+  <div id="progressContainer">
+    <div id="progressbar">0%</div>
+  </div>
+
   <script src="./index.js"></script>
+  <script src="./formHandling.js"></script>
 </body>
 
 </html>

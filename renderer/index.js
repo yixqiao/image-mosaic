@@ -3,6 +3,7 @@
 const {
   ipcRenderer
 } = require('electron')
+
 const { dialog } = require('electron').remote
 const os = require('os')
 
@@ -85,6 +86,7 @@ function buildMosaic () {
 
 document.getElementById('buildMosaicButton').addEventListener('click', buildMosaic)
 
-ipcRenderer.on('test', (event, todos) => {
-
+ipcRenderer.on('progress', (event, p) => {
+  document.getElementById('progressbar').style.width = p * 100 + '%'
+  document.getElementById('progressbar').innerHTML = Math.round(p * 100) + '%'
 })

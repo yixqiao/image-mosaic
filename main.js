@@ -32,11 +32,20 @@ function main () {
   })
 
   ipcMain.on('calc-avgs', (event, avgsSettings) => {
-    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.1.jar', 'averages',
-      '-i', avgsSettings.imgsPath, '-o', avgsSettings.avgsOutPath, '-t', avgsSettings.threadCount])
+    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.2.0.jar', 'averages',
+      '-i', avgsSettings.imgsPath, '-o', avgsSettings.avgsOutPath, '-t', avgsSettings.threadCount,
+      '--electron-integration'])
+    var totalCount = 0
 
     mosaicProcess.stdout.on('data', data => {
-      console.log(`stdout: ${data}`)
+      const s = data.toString().split(' ')
+      if (s[0] === 'total') {
+        totalCount = parseInt(s[1])
+      } else if (s[0] === 'completed') {
+        mainWindow.send('progress', parseFloat(s[1]) / totalCount)
+      } else {
+        console.log(`stdout: ${data}`)
+      }
     })
     mosaicProcess.stderr.on('data', data => {
       console.log(`stderr: ${data}`)
@@ -51,12 +60,21 @@ function main () {
 
   ipcMain.on('build-mosaic', (event, buildSettings) => {
     console.log(buildSettings)
-    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.1.1.jar', 'build',
+    const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.2.0.jar', 'build',
       '-p', buildSettings.imgPath, '-o', buildSettings.imgOutPath,
-      '-a', buildSettings.avgsOutPath, '-t', buildSettings.threadCount])
+      '-a', buildSettings.avgsOutPath, '-t', buildSettings.threadCount,
+      '--electron-integration'])
+    var totalCount = 0
 
     mosaicProcess.stdout.on('data', data => {
-      console.log(`stdout: ${data}`)
+      const s = data.toString().split(' ')
+      if (s[0] === 'total') {
+        totalCount = parseInt(s[1])
+      } else if (s[0] === 'completed') {
+        mainWindow.send('progress', parseFloat(s[1]) / totalCount)
+      } else {
+        console.log(`stdout: ${data}`)
+      }
     })
     mosaicProcess.stderr.on('data', data => {
       console.log(`stderr: ${data}`)
