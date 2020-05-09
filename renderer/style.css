@@ -1,9 +1,32 @@
-#progressContainer {
+#formsContainer {
+  display: table;
+  table-layout: fixed;
+  border-spacing: 10px 0px;
   width: 100%;
+}
+
+.formContainer {
+  display: table-cell;
+  padding: 8px;
+  border: solid 1px gray;
+}
+
+#avgsContainer{
+  margin-right: 10px;
+}
+
+.threadCount {
+  width: 45px;
+  border: solid 1px #ddd;
+}
+
+#progressContainer {
+  margin: 10px 10px;
+  width: calc(100% - 20px);
   background-color: gray;
 }
 
-#progressbar {
+#progressbar{
   width: 0;
   height: 30px;
   background-color: green;
