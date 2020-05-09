@@ -15,6 +15,10 @@
   margin-right: 10px;
 }
 
+.filePathPreview{
+  word-wrap: break-word;
+}
+
 .threadCount {
   width: 45px;
   border: solid 1px #ddd;
