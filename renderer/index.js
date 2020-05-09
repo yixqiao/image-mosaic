@@ -79,6 +79,8 @@ function buildMosaic () {
     imgPath: document.getElementById('imgPath').innerHTML,
     imgOutPath: document.getElementById('imgOutPath').innerHTML,
     avgsOutPath: document.getElementById('avgsOutPath').innerHTML,
+    chunkSize: document.getElementById('chunkSize').value,
+    scaleFactor: document.getElementById('scaleFactor').value,
     threadCount: document.getElementById('threadCount').value
   }
   ipcRenderer.send('build-mosaic', buildSettings)

@@ -19,9 +19,16 @@
   word-wrap: break-word;
 }
 
+input{
+  border: solid 1px #ddd;
+}
+
 .threadCount {
   width: 45px;
-  border: solid 1px #ddd;
+}
+
+.chunkSize, .scaleFactor{
+  width: 60px;
 }
 
 #progressContainer {
