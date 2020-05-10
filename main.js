@@ -14,14 +14,14 @@ const Window = require('./Window')
 
 function main () {
   const mainWindow = new Window({
-    width: 1200,
-    height: 800,
+    width: 600,
+    height: 400,
     // fullscreen: true,
     file: 'renderer/index.html'
   })
 
   // mainWindow.setMenu(null)
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   electronLocalshortcut.register(mainWindow, 'Escape', () => {
     app.quit()
