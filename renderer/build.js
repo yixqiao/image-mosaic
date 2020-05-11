@@ -38,6 +38,12 @@ function pickAvgsOut () {
 
 document.getElementById('pickAvgsIn').addEventListener('click', pickAvgsOut)
 
+const chunkSizeInput = document.getElementById('chunkSize')
+chunkSizeInput.addEventListener('click', function () { chunkSizeInput.select() })
+
+const scaleFactorInput = document.getElementById('scaleFactor')
+scaleFactorInput.addEventListener('click', function () { scaleFactorInput.select() })
+
 function buildMosaic () {
   const buildSettings = {
     imgPath: document.getElementById('imgPath').innerHTML,

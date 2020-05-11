@@ -4,8 +4,6 @@
 
 const os = require('os')
 
-document.getElementById('threadCount').value = os.cpus().length
-
 function pickImgs () {
   dialog.showOpenDialog({
     properties: ['openDirectory']
@@ -33,6 +31,10 @@ function pickAvgsOut () {
 }
 
 document.getElementById('pickAvgsOut').addEventListener('click', pickAvgsOut)
+
+const threadCountInput = document.getElementById('threadCount')
+threadCountInput.value = os.cpus().length
+threadCountInput.addEventListener('click', function () { threadCountInput.select() })
 
 function calcAvgs () {
   const avgsSettings = {
