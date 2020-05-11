@@ -7,7 +7,7 @@ function pickImg () {
     if (result.canceled) return
     const path = result.filePaths
     document.getElementById('imgPath').innerHTML = path
-    document.getElementById('imgPath').dataset.selected = true
+    document.getElementById('imgPath').dataset.dataHasSelected = 'y'
   })
 }
 
@@ -20,7 +20,7 @@ function pickImgOut () {
     if (result.canceled) return
     const path = result.filePath
     document.getElementById('imgOutPath').innerHTML = path
-    document.getElementById('imgOutPath').dataset.selected = true
+    document.getElementById('imgOutPath').dataset.dataHasSelected = 'y'
   })
 }
 
@@ -32,7 +32,7 @@ function pickAvgsOut () {
     if (result.canceled) return
     const path = result.filePaths
     document.getElementById('avgsInPath').innerHTML = path
-    document.getElementById('avgsInPath').dataset.selected = true
+    document.getElementById('avgsInPath').dataset.dataHasSelected = 'y'
   })
 }
 
@@ -45,6 +45,36 @@ const scaleFactorInput = document.getElementById('scaleFactor')
 scaleFactorInput.addEventListener('click', function () { scaleFactorInput.select() })
 
 function buildMosaic () {
+  if (document.getElementById('imgPath').dataset.dataHasSelected !== 'y') {
+    dialog.showMessageBox({
+      type: 'error',
+      title: 'Error',
+      message: 'No image input path selected',
+      detail: 'Please select an image to use as input',
+      buttons: ['OK']
+    })
+    return
+  }
+  if (document.getElementById('imgOutPath').dataset.dataHasSelected !== 'y') {
+    dialog.showMessageBox({
+      type: 'error',
+      title: 'Error',
+      message: 'No image ouput path selected',
+      detail: 'Please select an location to save the image',
+      buttons: ['OK']
+    })
+    return
+  }
+  if (document.getElementById('avgsInPath').dataset.dataHasSelected !== 'y') {
+    dialog.showMessageBox({
+      type: 'error',
+      title: 'Error',
+      message: 'No averages in path selected',
+      detail: 'Please select a path containing the generated averages',
+      buttons: ['OK']
+    })
+    return
+  }
   const buildSettings = {
     imgPath: document.getElementById('imgPath').innerHTML,
     imgOutPath: document.getElementById('imgOutPath').innerHTML,
