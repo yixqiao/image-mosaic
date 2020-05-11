@@ -30,6 +30,8 @@ function pickAvgsOut () {
     const path = result.filePath
     document.getElementById('avgsOutPath').innerHTML = path
     document.getElementById('avgsOutPath').dataset.selected = true
+    document.getElementById('avgsInPath').innerHTML = path
+    document.getElementById('avgsInPath').dataset.selected = true
   })
 }
 
@@ -78,7 +80,7 @@ function buildMosaic () {
   const buildSettings = {
     imgPath: document.getElementById('imgPath').innerHTML,
     imgOutPath: document.getElementById('imgOutPath').innerHTML,
-    avgsOutPath: document.getElementById('avgsOutPath').innerHTML,
+    avgsInPath: document.getElementById('avgsInPath').innerHTML,
     chunkSize: document.getElementById('chunkSize').value,
     scaleFactor: document.getElementById('scaleFactor').value,
     threadCount: document.getElementById('threadCount').value

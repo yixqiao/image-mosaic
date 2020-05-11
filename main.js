@@ -15,7 +15,7 @@ const Window = require('./Window')
 function main () {
   const mainWindow = new Window({
     width: 600,
-    height: 400,
+    height: 600,
     // fullscreen: true,
     file: 'renderer/index.html'
   })
@@ -62,7 +62,7 @@ function main () {
     console.log(buildSettings)
     const mosaicProcess = spawn('java', ['-jar', 'mosaic-0.2.1.jar', 'build',
       '-p', buildSettings.imgPath, '-o', buildSettings.imgOutPath,
-      '-a', buildSettings.avgsOutPath, '-t', buildSettings.threadCount,
+      '-a', buildSettings.avgsInPath, '-t', buildSettings.threadCount,
       '-c', buildSettings.chunkSize, '-s', buildSettings.scaleFactor,
       '--electron-integration'])
     var totalCount = 0
