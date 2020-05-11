@@ -17,6 +17,11 @@ body {
   user-select: none;
 }
 
+::selection{
+  background-color: #c3d7ee;
+  color: #000;
+}
+
 #formsContainer {
   width: 100%;
 }
