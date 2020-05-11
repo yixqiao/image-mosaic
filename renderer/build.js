@@ -26,6 +26,18 @@ function pickImgOut () {
 
 document.getElementById('pickImgOut').addEventListener('click', pickImgOut)
 
+function pickAvgsOut () {
+  dialog.showOpenDialog({
+  }).then(result => {
+    if (result.canceled) return
+    const path = result.filePaths
+    document.getElementById('avgsInPath').innerHTML = path
+    document.getElementById('avgsInPath').dataset.selected = true
+  })
+}
+
+document.getElementById('pickAvgsIn').addEventListener('click', pickAvgsOut)
+
 function buildMosaic () {
   const buildSettings = {
     imgPath: document.getElementById('imgPath').innerHTML,
