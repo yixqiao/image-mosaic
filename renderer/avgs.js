@@ -11,7 +11,7 @@ function pickImgs () {
     if (result.canceled) return
     const path = result.filePaths
     document.getElementById('imgsPath').innerHTML = path
-    document.getElementById('imgsPath').dataset.selected = true
+    document.getElementById('imgsPath').dataset.dataHasSelected = 'y'
   })
 }
 
@@ -24,9 +24,9 @@ function pickAvgsOut () {
     if (result.canceled) return
     const path = result.filePath
     document.getElementById('avgsOutPath').innerHTML = path
-    document.getElementById('avgsOutPath').dataset.selected = true
+    document.getElementById('avgsOutPath').dataset.dataHasSelected = 'y'
     document.getElementById('avgsInPath').innerHTML = path
-    document.getElementById('avgsInPath').dataset.selected = true
+    document.getElementById('avgsInPath').dataset.dataHasSelected = 'y'
   })
 }
 
@@ -37,6 +37,26 @@ threadCountInput.value = os.cpus().length
 threadCountInput.addEventListener('click', function () { threadCountInput.select() })
 
 function calcAvgs () {
+  if (document.getElementById('imgsPath').dataset.dataHasSelected !== 'y') {
+    dialog.showMessageBox({
+      type: 'error',
+      title: 'Error',
+      message: 'No images path selected',
+      detail: 'Please select a directory',
+      buttons: ['OK']
+    })
+    return
+  }
+  if (document.getElementById('avgsOutPath').dataset.dataHasSelected !== 'y') {
+    dialog.showMessageBox({
+      type: 'error',
+      title: 'Error',
+      message: 'No averages out path selected',
+      detail: 'Please select a file to save the averages in',
+      buttons: ['OK']
+    })
+    return
+  }
   const avgsSettings = {
     imgsPath: document.getElementById('imgsPath').innerHTML,
     avgsOutPath: document.getElementById('avgsOutPath').innerHTML,
