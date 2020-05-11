@@ -14,6 +14,7 @@ body {
   background-color: #11253c;
   color: #e4e2e9;
   font-size: 2.5vw;
+  user-select: none;
 }
 
 #formsContainer {
@@ -91,6 +92,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 .chunkSize, .scaleFactor {
   width: 60px;
+}
+
+.filePathPreview{
+  user-select: all;
 }
 
 button {
