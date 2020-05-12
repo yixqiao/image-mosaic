@@ -57,6 +57,18 @@ function calcAvgs () {
     })
     return
   }
+  const threadCount = Math.floor(Number(document.getElementById('threadCount').value))
+  if (threadCount === Infinity || String(threadCount) !== document.getElementById('threadCount').value ||
+      threadCount <= 0 || threadCount > 128) {
+    dialog.showMessageBox({
+      type: 'error',
+      title: 'Error',
+      message: 'Invalid thread count',
+      detail: 'Thread count has to be an integer between 1 and 128',
+      buttons: ['OK']
+    })
+    return
+  }
   const avgsSettings = {
     imgsPath: document.getElementById('imgsPath').innerHTML,
     avgsOutPath: document.getElementById('avgsOutPath').innerHTML,
