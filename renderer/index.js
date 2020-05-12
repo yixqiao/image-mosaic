@@ -1,5 +1,7 @@
 'use strict'
 
+/* global calcAvgs, buildMosaic */
+
 const {
   ipcRenderer
 } = require('electron')
@@ -12,3 +14,10 @@ ipcRenderer.on('progress', (event, p) => {
   document.getElementById('progressbar').style.width = p * 100 + '%'
   document.getElementById('progressbar').innerHTML = Math.round(p * 100) + '%'
 })
+
+function doBoth () {
+  calcAvgs()
+  buildMosaic()
+}
+
+document.getElementById('bothButton').addEventListener('click', doBoth)
