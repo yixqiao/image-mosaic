@@ -17,7 +17,7 @@ body {
   user-select: none;
 }
 
-::selection{
+::selection {
   background-color: #c3d7ee;
   color: #000;
 }
@@ -56,8 +56,17 @@ td {
   border-bottom: dotted 1px #aaa;
 }
 
-#buildButtonContainer, #avgsButtonContainer {
+#buildButtonContainer, #avgsButtonContainer, #bothButtonContainer {
   border-bottom: solid 2px #aaa;
+  text-align: center;
+}
+
+.actionButton {
+  width: 80%;
+}
+
+#bothButton{
+  width: calc(90% + 5px);
 }
 
 .filePathPreview {
@@ -99,7 +108,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   width: 60px;
 }
 
-.filePathPreview{
+.filePathPreview {
   user-select: all;
 }
 
